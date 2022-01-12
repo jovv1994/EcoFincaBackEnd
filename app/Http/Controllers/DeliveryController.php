@@ -52,9 +52,7 @@ class DeliveryController extends Controller
             'description' => 'required|max:500',
             'quantity' => 'required|integer',
             'image' => 'required|image',
-            'provincia' => 'required',
-            'canton' => 'required',
-            'parroquia' => 'required',
+            'address' => 'required',
             'for_user_id' => 'required',
             //  'state' => 'required'
         ], self::$messages);
@@ -98,14 +96,15 @@ class DeliveryController extends Controller
     {
         $this->authorize('updateByFarm', $delivery);
         $request->validate([
-            'for_user_id' => 'required',
-            'state' => 'required',
-//           'image' => 'required|image'
+           'image' => 'required|image'
         ]);
 
-//        $path = $request->image->store('public/deliveries'); // storeAs('',$request->user()->id.'_'.$delivery->id.'.'.$request->picture->extension());
-//        $delivery->image = $path;
-        $delivery->state = $request->state;
+        $path = $request->image->store('public/deliveries'); // storeAs('',$request->user()->id.'_'.$delivery->id.'.'.$request->picture->extension());
+        $path = $request->image->storeAs('public/deliveries', $request->user()->id . '_' . $delivery->id . '.' . $request->image->extension());
+        $delivery->description = $request->description;
+        $delivery->quantity = $request->quantity;
+        $delivery->image = $path;
+        $delivery->address = $request->address;
         $delivery->for_user_id = $request->for_user_id;
         $delivery->save();
         return response()->json($delivery, 200);

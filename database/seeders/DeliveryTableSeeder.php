@@ -38,18 +38,11 @@ class DeliveryTableSeeder extends Seeder
                 // Y ahora con este usuario creamos algunas entregas
                 $num_deliveries = 3;
                 for ($j = 0; $j < $num_deliveries; $j++) {
-                    $random = $faker->numberBetween(1, 258);
-                    $parroquia = Parroquia::find($random);
-                    $canton = $parroquia->canton;
-                    $provincia = $canton->provincia;
-
                     Delivery::create([
                         'description' => $faker->sentence,
                         'quantity' => $faker->numberBetween(1, 30),
                         'image' => 'deliveries/' . $image_name,
-                        'parroquia' => $parroquia->nombre,
-                        'canton' => $canton->nombre,
-                        'provincia' => $provincia->nombre,
+                        'address' => $faker->address,
                         'for_user_id' => $faker->numberBetween(11, 20),
 //                        'state' => 'pendiente'
                     ]);

@@ -12,9 +12,7 @@ class Delivery extends Model
         'description',
         'quantity',
         'image',
-        'provincia',
-        'canton',
-        'parroquia',
+        'address',
         'for_user_id',
 //        'state'
     ];

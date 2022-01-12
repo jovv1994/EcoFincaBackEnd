@@ -18,9 +18,7 @@ class CreateDeliveriesTable extends Migration
             $table->text('description');
             $table->string('quantity');
             $table->string('image');
-            $table->string('provincia');
-            $table->string('canton');
-            $table->string('parroquia');
+            $table->string('address');
             $table->unsignedBigInteger('for_user_id');
             $table->foreign('for_user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
             $table->string('state')->default('pendiente');
