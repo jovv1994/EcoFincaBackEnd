@@ -39,7 +39,6 @@ class UserTableSeeder extends Seeder
                 'image' => $faker->imageUrl(400, 300, null, false),
                 'organization_type' => $faker->company,
                 'description' => $faker->text,
-                'parroquia_id' => $faker->numberBetween(1, 225),
                 'role' => 'ROLE_FARM'
             ]);
         }
@@ -53,7 +52,6 @@ class UserTableSeeder extends Seeder
                 'image' => $faker->imageUrl(400, 300, null, false),
                 'organization_type' => $faker->company,
                 'description' => $faker->text,
-                'parroquia_id' => $faker->numberBetween(1, 225),
                 'role' => 'ROLE_COLLECTION_CENTER'
             ]);
         }

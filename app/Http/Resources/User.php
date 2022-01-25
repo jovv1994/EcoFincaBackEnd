@@ -23,18 +23,11 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
-        $parroquia = $this->parroquia;
-        $canton = $parroquia->canton;
-        $provincia = $canton->provincia;
-
         return [
             'id' => $this->id,
             'name' => $this->name,
             'lastname' => $this->lastname,
             'address' => $this->address,
-            'parroquia' => $parroquia->nombre,
-            'canton' => $canton->nombre,
-            'provincia' => $provincia->nombre,
             'image' => $this->image,
             'token' => $this->when($this->token, $this->token),
             'organization_type' => $this->organization_type,

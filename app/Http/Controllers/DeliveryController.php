@@ -44,7 +44,6 @@ class DeliveryController extends Controller
         return response()->json(new DeliveryResource($delivery), 200);
     }
 
-    //FUNCIONA CON IMAGENES Y ROL
     public function store(Request $request)
     {
         $this->authorize('create', Delivery::class);
@@ -58,7 +57,7 @@ class DeliveryController extends Controller
         ], self::$messages);
 
         $delivery = Delivery::create($request->all());
-        $path = $request->image->storeAs('public/deliveries', $request->user()->id . '_' . $delivery->id . '.' . $request->image->extension()); // storeAs('',$request->user()->id.'_'.$delivery->id.'.'.$request->picture->extension());
+        $path = $request->image->storeAs('public/deliveries', $request->user()->id . '_' . $delivery->id . '.' . $request->image->extension());
         $delivery->image = $path;
         $delivery->save();
 //        Mail::to($delivery->user)->send(new NewDelivery($delivery));
@@ -70,22 +69,8 @@ class DeliveryController extends Controller
     {
         $this->authorize('updateByCollectionCenter', $delivery);
         $request->validate([
-//            'description' => 'required|max:500',
-//            'quantity' => 'required|integer',
-//            'image' => 'required|image',
-//            'provincia' => 'required',
-//            'canton' => 'required',
-//            'parroquia' => 'required',
-//            'for_user_id' => 'required',
             'state' => 'required'
         ]);
-
-        //$delivery->update($request->all());
-        //$delivery = Delivery::create($request->all());
-        //$path = $request->image->store('public/deliveries'); // storeAs('',$request->user()->id.'_'.$delivery->id.'.'.$request->picture->extension());
-        //$delivery->image = $path;
-
-        //SE CAMBIA SOLO EL CAMPO REQUERIDO Y SE VUELVE A GUARDAR EL OBJETO
         $delivery->state = $request->state;
         $delivery->save();
         return response()->json($delivery, 200);
@@ -96,14 +81,13 @@ class DeliveryController extends Controller
     {
         $this->authorize('updateByFarm', $delivery);
         $request->validate([
-           'image' => 'required|image'
+           //'image' => 'required|image'
         ]);
 
-        $path = $request->image->store('public/deliveries'); // storeAs('',$request->user()->id.'_'.$delivery->id.'.'.$request->picture->extension());
-        $path = $request->image->storeAs('public/deliveries', $request->user()->id . '_' . $delivery->id . '.' . $request->image->extension());
+        //$path = $request->image->storeAs('public/deliveries', $request->user()->id . '_' . $delivery->id . '.' . $request->image->extension());
         $delivery->description = $request->description;
         $delivery->quantity = $request->quantity;
-        $delivery->image = $path;
+        //$delivery->image = $path;
         $delivery->address = $request->address;
         $delivery->for_user_id = $request->for_user_id;
         $delivery->save();

@@ -18,26 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//AGREGAR RUTAS PARA LOS ENDPOINTS CREADOS
-//AÑADIR RUTAS QUE DEVUELVAN TODOS LOS CANTONES DE UNA PROVINCIA Y TODAS LAS PARROQUIAS DE UN CANTON
-
-// REGISTRO Y LOGIN => funcionan
+// REGISTRO Y LOGIN
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'authenticate']);
-
-// RUTAS PROVINCIAS => FUNCIONAN
-Route::get('/provincias', [ProvinciaController::class, 'index']);
-Route::get('/provincias/{provincia}', [ProvinciaController::class, 'show']);
-Route::get('/provincias/{provincia}/cantones', [ProvinciaController::class, 'cantones']);
-
-// RUTAS CANTONES => FUNCIONAN
-Route::get('/cantones', [CantonController::class, 'index']);
-Route::get('/cantones/{canton}', [CantonController::class, 'show']);
-Route::get('/cantones/{canton}/parroquias', [CantonController::class, 'parroquias']);
-
-// RUTAS PARROQUIAS => FUNCIONAN
-Route::get('/parroquias', [ParroquiaController::class, 'index']);
-Route::get('/parroquias/{parroquia}', [ParroquiaController::class, 'show']);
 
 // RUTA PARA OBTENER USUARIOS DE CENTRO DE ACOPIO
 Route::get('/users', [UserController::class, 'indexCollectionCenters']);
@@ -45,14 +28,14 @@ Route::get('/users', [UserController::class, 'indexCollectionCenters']);
 Route::group(['middleware' => ['jwt.verify']], function () {
     //OBTENER INFORMACION DEL USUARIO CON LA SESION ACTIVA
     Route::get('/user', [UserController::class, 'getAuthenticatedUser']);
-    // VER ENTREGAS => funciona
+    // VER ENTREGAS
     Route::get('deliveries', [DeliveryController::class, 'index']);
-    // CREAR ENTREGAS => funciona
+    // CREAR ENTREGAS
     Route::post('deliveries', [DeliveryController::class, 'store']);
     // MOSTRAR UNA ENTREGA => funciona
     Route::get('deliveries/{delivery}', [DeliveryController::class, 'show']);
     // ACTUALIZAR ENTREGA POR FINCA => pendiente revisar
-    Route::put('deliveries/{delivery}', [DeliveryController::class, 'updateByFarm']);
+    Route::put('deliveriesupdate/{delivery}', [DeliveryController::class, 'updateByFarm']);
     // ACTUALIZAR ENTREGA POR ACOPIO => funciona
     Route::put('deliveries/{delivery}', [DeliveryController::class, 'updateByCollectionCenter']);
     // LOGOUT

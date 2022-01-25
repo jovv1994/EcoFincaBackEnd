@@ -51,7 +51,6 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
             'organization_type' => 'required|string|max:255',
             'description' => 'string|max:400',
-            'parroquia_id' => 'required',
             'role' => 'required'
         ]);
 
@@ -63,7 +62,6 @@ class UserController extends Controller
             'password' => Hash::make($request->get('password')),
             'organization_type' => $request->get('organization_type'),
             'description' => $request->get('description'),
-            'parroquia_id' => $request->get('parroquia_id'),
             'role' => $request->get('role')
         ]);
 
@@ -135,8 +133,6 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            //            'cellphone' => 'string|max:10',
-            //            'address' => 'string',
             'image' => 'string|url'
         ]);
 
