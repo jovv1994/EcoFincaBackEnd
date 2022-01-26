@@ -13,8 +13,7 @@ class Delivery extends Model
         'quantity',
         'image',
         'address',
-        'for_user_id',
-//        'state'
+        'for_user_id'
     ];
 
     public static function boot()

@@ -64,7 +64,6 @@ class DeliveryController extends Controller
         return response()->json($delivery, 201);
     }
 
-    //ESTE METODO => FUNCIONA
     public function updateByCollectionCenter(Request $request, Delivery $delivery)
     {
         $this->authorize('updateByCollectionCenter', $delivery);
@@ -76,7 +75,6 @@ class DeliveryController extends Controller
         return response()->json($delivery, 200);
     }
 
-    // PENDIENTE METODO QUE ACTUALIZA LA ENTREGA DESDE FINCA
     public function updateByFarm(Request $request, Delivery $delivery)
     {
         $this->authorize('updateByFarm', $delivery);
@@ -94,13 +92,22 @@ class DeliveryController extends Controller
         return response()->json($delivery, 200);
     }
 
-    //CREAR OTRO METODO PARA ACTUALIZAR OTRO CAMPO
+    public function updateNotification(Request $request, Delivery $delivery)
+    {
+        $this->authorize('updateNotification', $delivery);
 
-//    public function delete(Delivery $delivery)
-//    {
-//        $delivery->delete();
-//        return response()->json(null, 204);
-//    }
+        $request->validate([
+            'date' => 'required',
+            'hour' => 'required'
+        ]);
+
+        $delivery->date = $request->date;
+        $delivery->hour = $request->hour;
+
+        $delivery->save();
+
+        return response()->json($delivery, 200);
+    }
 
     public function image(Delivery $delivery)
     {

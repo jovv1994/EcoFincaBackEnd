@@ -19,9 +19,11 @@ class CreateDeliveriesTable extends Migration
             $table->string('quantity');
             $table->string('image');
             $table->string('address');
+            $table->string('date')->default('');
+            $table->string('hour')->default('');
             $table->unsignedBigInteger('for_user_id');
             $table->foreign('for_user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
-            $table->string('state')->default('pendiente');
+            $table->string('state')->default('Pendiente');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();

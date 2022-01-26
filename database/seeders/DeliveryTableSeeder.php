@@ -2,10 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Parroquia;
-use App\Models\Canton;
 use App\Models\Delivery;
-use App\Models\Provincia;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -44,7 +41,6 @@ class DeliveryTableSeeder extends Seeder
                         'image' => 'deliveries/' . $image_name,
                         'address' => $faker->address,
                         'for_user_id' => $faker->numberBetween(11, 20),
-//                        'state' => 'pendiente'
                     ]);
                 }
             }
