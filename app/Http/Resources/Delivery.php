@@ -28,6 +28,7 @@ class Delivery extends JsonResource
             'address' => $this->address,
             'date' => $this->date,
             'hour' => $this->hour,
+            'score' => $this->score,
             'for_user_id' => $this->for_user_id,
             'delivery_creator' => $delivery_creator->organization_type,
             'delivery_manager' => $delivery_manager->organization_type,

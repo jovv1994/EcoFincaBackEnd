@@ -78,6 +78,15 @@ class DeliveryPolicy
         return $user->isGranted(User::ROLE_COLLECTION_CENTER) && $user->id === $delivery->for_user_id;
     }
 
+    public function updateNotification(User $user, Delivery $delivery)
+    {
+        return $user->isGranted(User::ROLE_COLLECTION_CENTER) && $user->id === $delivery->for_user_id;
+    }
+
+    public function updateScore(User $user, Delivery $delivery)
+    {
+        return $user->isGranted(User::ROLE_FARM) && $user->id === $delivery->user_id;
+    }
     /**
      * Determine whether the user can delete the model.
      *

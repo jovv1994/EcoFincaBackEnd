@@ -38,6 +38,8 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::put('deliveries/{delivery}', [DeliveryController::class, 'updateByCollectionCenter']);
     //ACTUALIZAR LA NOTIFICACIÓN DE RETIRO PARA LA RECOLECCIÓN DE LA ENTREGA
     Route::put('deliveriesupdatenotification/{delivery}', [DeliveryController::class, 'updateNotification']);
+    //ACTUALIZAR LA CALIFICACIÓN DE LA ENTREGA
+    Route::put('deliveriesupdatescore/{delivery}', [DeliveryController::class, 'updateScore']);
     //LOGOUT
     Route::post('/logout', [UserController::class, 'logout']);
     // pendiente de revisar

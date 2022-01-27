@@ -89,6 +89,7 @@ class DeliveryController extends Controller
         $delivery->address = $request->address;
         $delivery->for_user_id = $request->for_user_id;
         $delivery->save();
+
         return response()->json($delivery, 200);
     }
 
@@ -108,6 +109,22 @@ class DeliveryController extends Controller
 
         return response()->json($delivery, 200);
     }
+
+    public function updateScore(Request $request, Delivery $delivery)
+    {
+        $this->authorize('updateScore', $delivery);
+
+        $request->validate([
+            'score' => 'required',
+        ]);
+
+        $delivery->score = $request->score;
+
+        $delivery->save();
+
+        return response()->json($delivery, 200);
+    }
+
 
     public function image(Delivery $delivery)
     {
