@@ -64,17 +64,40 @@ class DeliveryController extends Controller
         return response()->json($delivery, 201);
     }
 
+    //ACTUALIZAR EL ESTADO DE LA ENTREGA POR EL CENTRO DE ACOPIO
     public function updateByCollectionCenter(Request $request, Delivery $delivery)
     {
         $this->authorize('updateByCollectionCenter', $delivery);
+
         $request->validate([
             'state' => 'required'
         ]);
+
         $delivery->state = $request->state;
         $delivery->save();
+
         return response()->json($delivery, 200);
     }
 
+    //ACTUALIZAR LA NOTIFICACIÓN DE FECHA Y HORA DEL RETIRO DE LA ENTREGA POR EL CENTRO DE ACOPIO
+    public function updateNotification(Request $request, Delivery $delivery)
+    {
+        $this->authorize('updateNotification', $delivery);
+
+        $request->validate([
+            'date' => 'required',
+            'hour' => 'required'
+        ]);
+
+        $delivery->date = $request->date;
+        $delivery->hour = $request->hour;
+
+        $delivery->save();
+
+        return response()->json($delivery, 200);
+    }
+
+    //ACTUALKZAR LA ENTREGA POR EL DUEÑO DE FINCA
     public function updateByFarm(Request $request, Delivery $delivery)
     {
         $this->authorize('updateByFarm', $delivery);
@@ -93,23 +116,7 @@ class DeliveryController extends Controller
         return response()->json($delivery, 200);
     }
 
-    public function updateNotification(Request $request, Delivery $delivery)
-    {
-        $this->authorize('updateNotification', $delivery);
-
-        $request->validate([
-            'date' => 'required',
-            'hour' => 'required'
-        ]);
-
-        $delivery->date = $request->date;
-        $delivery->hour = $request->hour;
-
-        $delivery->save();
-
-        return response()->json($delivery, 200);
-    }
-
+    //ACTUALIZAR LA CALIFICACIÓN DEL RETIRO DE LA ENTREGA POR EL DUEÑO DE FINCA
     public function updateScore(Request $request, Delivery $delivery)
     {
         $this->authorize('updateScore', $delivery);
@@ -125,6 +132,21 @@ class DeliveryController extends Controller
         return response()->json($delivery, 200);
     }
 
+    //ACTUALKZAR EL ESTADO DE LA ENTREGA POR EL DUEÑO DE FINCA
+    public function updateStateByFarm(Request $request, Delivery $delivery)
+    {
+        $this->authorize('updateStateByFarm', $delivery);
+
+        $request->validate([
+            'state' => 'required',
+        ]);
+
+        $delivery->state = $request->state;
+
+        $delivery->save();
+
+        return response()->json($delivery, 200);
+    }
 
     public function image(Delivery $delivery)
     {

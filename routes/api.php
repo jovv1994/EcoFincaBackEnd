@@ -34,12 +34,14 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('deliveries/{delivery}', [DeliveryController::class, 'show']);
     //ACTUALIZAR LA ENTREGA
     Route::put('deliveriesupdate/{delivery}', [DeliveryController::class, 'updateByFarm']);
-    //ACTUALIZAR EL ESTADO DE LA ENTREGA
+    //ACTUALIZAR EL ESTADO DE LA ENTREGA POR EL CENTRO DE ACOPIO
     Route::put('deliveries/{delivery}', [DeliveryController::class, 'updateByCollectionCenter']);
-    //ACTUALIZAR LA NOTIFICACIÓN DE RETIRO PARA LA RECOLECCIÓN DE LA ENTREGA
+    //ACTUALIZAR LA NOTIFICACIÓN DE RETIRO PARA LA RECOLECCIÓN DE LA ENTREGA POR EL CENTRO DE ACOPIO
     Route::put('deliveriesupdatenotification/{delivery}', [DeliveryController::class, 'updateNotification']);
-    //ACTUALIZAR LA CALIFICACIÓN DE LA ENTREGA
+    //ACTUALIZAR LA CALIFICACIÓN DE LA ENTREGA POR EL DUEÑO DE FINCA
     Route::put('deliveriesupdatescore/{delivery}', [DeliveryController::class, 'updateScore']);
+     //ACTUALIZAR EL ESTADO DE LA ENTREGA POR EL DUEÑO DE FINCA
+     Route::put('deliveriesupdatestatebyfarm/{delivery}', [DeliveryController::class, 'updateStateByFarm']);
     //LOGOUT
     Route::post('/logout', [UserController::class, 'logout']);
     // pendiente de revisar

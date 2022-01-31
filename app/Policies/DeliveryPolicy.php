@@ -65,28 +65,32 @@ class DeliveryPolicy
      * @param Delivery $delivery
      * @return mixed
      */
-    //PUEDE ACTUALKZAR SOLO EL DUEÑO DE FINCA QUE CREO LA ENTREGA => PENDIENTE DE REVISAR FUNCIONAMIENTO
+    //ACTUALKZAR LA ENTREGA POR EL DUEÑO DE FINCA
     public function updateByFarm(User $user, Delivery $delivery)
     {
         return $user->isGranted(User::ROLE_FARM) && $user->id === $delivery->user_id;
     }
-
-    // CREAR OTRO METODO PARA CONDICIONAR LA ACTUALIZACION DE CADA ROL DE USAURIO
-    // FUNCIONA
+    //ACTUALKZAR EL ESTADO DE LA ENTREGA POR EL DUEÑO DE FINCA
+    public function updateStateByFarm(User $user, Delivery $delivery)
+    {
+        return $user->isGranted(User::ROLE_FARM) && $user->id === $delivery->user_id;
+    }
+    //ACTUALIZAR LA CALIFICACIÓN DEL RETIRO DE LA ENTREGA POR EL DUEÑO DE FINCA
+    public function updateScore(User $user, Delivery $delivery)
+    {
+        return $user->isGranted(User::ROLE_FARM) && $user->id === $delivery->user_id;
+    }
+    //ACTUALIZAR EL ESTADO DE LA ENTREGA POR EL CENTRO DE ACOPIO
     public function updateByCollectionCenter(User $user, Delivery $delivery)
     {
         return $user->isGranted(User::ROLE_COLLECTION_CENTER) && $user->id === $delivery->for_user_id;
     }
-
+    //ACTUALIZAR LA NOTIFICACIÓN DE FECHA Y HORA DEL RETIRO DE LA ENTREGA POR EL CENTRO DE ACOPIO
     public function updateNotification(User $user, Delivery $delivery)
     {
         return $user->isGranted(User::ROLE_COLLECTION_CENTER) && $user->id === $delivery->for_user_id;
     }
 
-    public function updateScore(User $user, Delivery $delivery)
-    {
-        return $user->isGranted(User::ROLE_FARM) && $user->id === $delivery->user_id;
-    }
     /**
      * Determine whether the user can delete the model.
      *
