@@ -16,7 +16,9 @@ class Delivery extends Model
         'for_user_id',
         'date',
         'hour',
-        'score'
+        'score',
+        'rejected',
+        'scorecomment'
     ];
 
     public static function boot()

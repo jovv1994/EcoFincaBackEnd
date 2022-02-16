@@ -40,8 +40,12 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::put('deliveriesupdatenotification/{delivery}', [DeliveryController::class, 'updateNotification']);
     //ACTUALIZAR LA CALIFICACIÓN DE LA ENTREGA POR EL DUEÑO DE FINCA
     Route::put('deliveriesupdatescore/{delivery}', [DeliveryController::class, 'updateScore']);
-     //ACTUALIZAR EL ESTADO DE LA ENTREGA POR EL DUEÑO DE FINCA
-     Route::put('deliveriesupdatestatebyfarm/{delivery}', [DeliveryController::class, 'updateStateByFarm']);
+    //ACTUALIZAR EL ESTADO DE LA ENTREGA POR EL DUEÑO DE FINCA
+    Route::put('deliveriesupdatestatebyfarm/{delivery}', [DeliveryController::class, 'updateStateByFarm']);
+    //ACTUALIZAR LA NOTIFICACIÓN DE LA ENTREGA RECHAZADA POR EL CENTRO DE ACOPIO
+    Route::put('deliveriesupdaterejectedbyacopio/{delivery}', [DeliveryController::class, 'updateRejectedByAcopio']);
+    //ACTUALIZAR LA NOTIFICACIÓN DEL COMENTARIO DE LA CALIFICACIÓN MENOR A 5 POR EL DUEÑO DE FINCA
+    Route::put('deliveriesupdatescorecommentbyfarm/{delivery}', [DeliveryController::class, 'updateScoreCommentByFarm']);
     //LOGOUT
     Route::post('/logout', [UserController::class, 'logout']);
     // pendiente de revisar

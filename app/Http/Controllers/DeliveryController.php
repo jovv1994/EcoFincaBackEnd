@@ -148,6 +148,38 @@ class DeliveryController extends Controller
         return response()->json($delivery, 200);
     }
 
+    //ACTUALIZAR LA NOTIFICACIÓN DE LA ENTREGA RECHAZADA POR EL CENTRO DE ACOPIO
+    public function updateRejectedByAcopio(Request $request, Delivery $delivery)
+    {
+        $this->authorize('updateRejectedByAcopio', $delivery);
+
+        $request->validate([
+            'rejected' => 'required',
+        ]);
+
+        $delivery->rejected = $request->rejected;
+
+        $delivery->save();
+
+        return response()->json($delivery, 200);
+    }
+
+    //ACTUALIZAR LA NOTIFICACIÓN DEL COMENTARIO DE LA CALIFICACIÓN MENOR A 5 POR EL DUEÑO DE FINCA
+    public function updateScoreCommentByFarm(Request $request, Delivery $delivery)
+    {
+        $this->authorize('updateScoreCommentByFarm', $delivery);
+
+        $request->validate([
+            'scorecomment' => 'required',
+        ]);
+
+        $delivery->scorecomment = $request->scorecomment;
+
+        $delivery->save();
+
+        return response()->json($delivery, 200);
+    }
+
     public function image(Delivery $delivery)
     {
         return response()->download(public_path(Storage::url($delivery->image)), $delivery->id . '.jpg');

@@ -22,6 +22,8 @@ class CreateDeliveriesTable extends Migration
             $table->string('date')->default('');
             $table->string('hour')->default('');
             $table->string('score')->default('');
+            $table->string('rejected')->default('');
+            $table->string('scorecomment')->default('');
             $table->unsignedBigInteger('for_user_id');
             $table->foreign('for_user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
             $table->string('state')->default('Pendiente');

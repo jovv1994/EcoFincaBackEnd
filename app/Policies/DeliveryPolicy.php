@@ -90,6 +90,16 @@ class DeliveryPolicy
     {
         return $user->isGranted(User::ROLE_COLLECTION_CENTER) && $user->id === $delivery->for_user_id;
     }
+    //ACTUALIZAR LA NOTIFICACIÓN DE LA ENTREGA RECHAZADA POR EL CENTRO DE ACOPIO
+    public function updateRejectedByAcopio(User $user, Delivery $delivery)
+    {
+        return $user->isGranted(User::ROLE_COLLECTION_CENTER) && $user->id === $delivery->for_user_id;
+    }
+    //ACTUALIZAR LA NOTIFICACIÓN DEL COMENTARIO DE LA CALIFICACIÓN MENOR A 5 POR EL DUEÑO DE FINCA
+    public function updateScoreCommentByFarm(User $user, Delivery $delivery)
+    {
+        return $user->isGranted(User::ROLE_FARM) && $user->id === $delivery->user_id;
+    }
 
     /**
      * Determine whether the user can delete the model.
