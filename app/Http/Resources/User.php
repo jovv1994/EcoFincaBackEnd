@@ -27,6 +27,7 @@ class User extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'lastname' => $this->lastname,
+            'email' => $this->email,
             'address' => $this->address,
             'image' => $this->image,
             'token' => $this->when($this->token, $this->token),

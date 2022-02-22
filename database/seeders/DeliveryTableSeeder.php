@@ -38,8 +38,8 @@ class DeliveryTableSeeder extends Seeder
                     Delivery::create([
                         'description' => $faker->sentence,
                         'quantity' => $faker->numberBetween(1, 30),
-                        'image' => 'deliveries/' . $image_name,
-                        'address' => $faker->address,
+                        //'image' => 'deliveries/' . $image_name,
+                        //'address' => $faker->address,
                         'for_user_id' => $faker->numberBetween(11, 20),
                     ]);
                 }

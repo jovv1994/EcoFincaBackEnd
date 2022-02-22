@@ -25,16 +25,18 @@ class Delivery extends JsonResource
             'quantity' => $this->quantity,
             'state' => $this->state,
             'user_id' => $this->user_id,
-            'address' => $this->address,
+            //'address' => $this->address,
             'date' => $this->date,
             'hour' => $this->hour,
             'score' => $this->score,
             'rejected' => $this->rejected,
             'scorecomment' => $this->scorecomment,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
             'for_user_id' => $this->for_user_id,
             'delivery_creator' => $delivery_creator->organization_type,
-            'delivery_manager' => $delivery_manager->organization_type,
-            'image' => $this->image
+            'delivery_manager' => $delivery_manager->organization_type
+            //'image' => $this->image
         ];
     }
 }

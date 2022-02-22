@@ -22,21 +22,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'lastname',
         'email',
         'password',
-        'image',
         'organization_type',
         'description',
         'role'
     ];
-
-//    const ROLE_SUPERADMIN = 'ROLE_SUPERADMIN';
-//    const ROLE_ADMIN = 'ROLE_ADMIN';
-//    const ROLE_USER = 'ROLE_USER';
-//
-//    private const ROLES_HIERARCHY = [
-//        self::ROLE_SUPERADMIN => [self::ROLE_ADMIN],
-//        self::ROLE_ADMIN => [self::ROLE_USER],
-//        self::ROLE_USER => []
-//    ];
 
     const ROLE_FARM = 'ROLE_FARM';
     const ROLE_COLLECTION_CENTER = 'ROLE_COLLECTION_CENTER';
@@ -80,16 +69,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         return $this->hasMany('App\Models\Delivery');
     }
 
-
     //funcion para asignar la entrega a un centro de acopio
     public function assignedDeliveries()
     {
         return $this->hasMany('App\Models\Delivery', 'for_user_id', 'id');
-    }
-
-    public function parroquia()
-    {
-        return $this->belongsTo('App\Models\Parroquia');
     }
 
     public function isGranted($role)

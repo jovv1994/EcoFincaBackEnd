@@ -88,8 +88,8 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
     'to' => [
-        'address' => 'cdiaz_jl@hotmail.com.ar',
-        'name' => 'Carlos Diaz'
+        'address' => 'john.vasconez@epn.edu.ec',
+        'name' => 'John Vásconez'
     ],
     /*
     |--------------------------------------------------------------------------

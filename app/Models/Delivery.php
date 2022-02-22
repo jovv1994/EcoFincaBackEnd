@@ -11,14 +11,15 @@ class Delivery extends Model
     protected $fillable = [
         'description',
         'quantity',
-        'image',
-        'address',
+        //'address',
         'for_user_id',
         'date',
         'hour',
         'score',
         'rejected',
-        'scorecomment'
+        'scorecomment',
+        'latitude',
+        'longitude'
     ];
 
     public static function boot()

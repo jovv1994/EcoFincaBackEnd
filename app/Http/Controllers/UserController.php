@@ -7,11 +7,12 @@ use App\Http\Resources\UserCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Resources\User as UserResource;
-
+use App\Mail\PasswordReset;
 
 class UserController extends Controller
 {
@@ -130,21 +131,23 @@ class UserController extends Controller
         return response()->json(new UserResource($user), 200);
     }
 
-    public function update(Request $request, User $user)
+    public function confirmPasswordReset(Request $request)
     {
-        $request->validate([
-            'image' => 'string|url'
-        ]);
-
-        $user->update($request->all());
-        $path = $request->image->store('public/users'); // storeAs('',$request->user()->id.'_'.$delivery->id.'.'.$request->picture->extension());
-        $user->image = $path;
+        $newPassword = Hash::make($request->get('password'));
+        $user = User::find($request->id);
+        $user->password = $newPassword;
         $user->save();
-        return response()->json($user, 200);
+        return response()->json(new UserResource($user), 200);
     }
 
-//    public function image(User $user)
-//    {
-//        return response()->download(public_path(Storage::url($user->image)), $user->name);
-//    }
+    public function sendPasswordResetEmail(Request $request)
+    {
+        Mail::to("john.vasconez@epn.edu.ec")->send(new PasswordReset());
+    }
+
+    public function showAll()
+    {
+        return new UserCollection(User::all());
+
+    }
 }

@@ -17,13 +17,15 @@ class CreateDeliveriesTable extends Migration
             $table->bigIncrements('id');
             $table->text('description');
             $table->string('quantity');
-            $table->string('image');
-            $table->string('address');
+            //$table->string('image');
+            //$table->string('address');
             $table->string('date')->default('');
             $table->string('hour')->default('');
             $table->string('score')->default('');
             $table->string('rejected')->default('');
             $table->string('scorecomment')->default('');
+            $table->string('latitude')->default('');
+            $table->string('longitude')->default('');
             $table->unsignedBigInteger('for_user_id');
             $table->foreign('for_user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
             $table->string('state')->default('Pendiente');
