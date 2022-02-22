@@ -142,7 +142,7 @@ class UserController extends Controller
 
     public function sendPasswordResetEmail(Request $request)
     {
-        Mail::to("john.vasconez@epn.edu.ec")->send(new PasswordReset());
+        Mail::to($request->email)->send(new PasswordReset());
     }
 
     public function showAll()

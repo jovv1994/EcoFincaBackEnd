@@ -24,7 +24,7 @@ Route::post('/forgot-password', [UserController::class, 'sendPasswordResetEmail'
 //ACTUALIZAR CONTRASEÑA
 Route::post('/reset-password', [UserController::class, 'confirmPasswordReset']);
 //OBTENER TODOS LOS USUARIOS
-Route::get('/users', [UserController::class, 'showAll']);
+Route::get('/allusers', [UserController::class, 'showAll']);
 
 //OBTENER USUARIOS DE CENTRO DE ACOPIO
 Route::get('/users', [UserController::class, 'indexCollectionCenters']);
